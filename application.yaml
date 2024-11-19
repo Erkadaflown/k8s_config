@@ -3,9 +3,6 @@ kind: Application
 metadata:
   name: quayio-app
   namespace: argocd
-  annotations:
-    notifications.argoproj.io/subscribe.on-sync-failed: "true"
-    notifications.argoproj.io/subscribe.on-rollback: "true"
 spec:
   project: default
   source:
@@ -19,24 +16,5 @@ spec:
     automated:
       prune: true
       selfHeal: true
-      allowEmpty: false
     syncOptions:
       - CreateNamespace=true
-      - PrunePropagationPolicy=foreground
-      - PruneLast=true
-    retry:
-      limit: 3
-      backoff:
-        duration: 5s
-        factor: 2
-        maxDuration: 1m
-  revisionHistoryLimit: 5
-  rollback:
-    enabled: true
-    force: false
-    recreate: false
-  healthChecks:
-    - kind: Deployment
-      apiVersion: apps/v1
-      name: "*"
-      failureThreshold: 3
