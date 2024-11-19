@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
         - name: deployment-test-quayio
-          image: quay.io/shinoe/deployment-test-quayio:latest
+          image: quay.io/shinoe/deployment-test-quayio
           imagePullPolicy: IfNotPresent
           ports:
             - containerPort: 8080
